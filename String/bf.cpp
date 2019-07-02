@@ -1,29 +1,35 @@
 #include<iostream>
-#include<cstring>
 using namespace std;
 
-void bf(char *a, char *b)
+int bf(char *s, char *p)
 {
-	int len1 = strlen(a);
-	int len2 = strlen(b);
-	for (int i = 0; i < len2; i++)
+	int slen = strlen(s);
+	int plen = strlen(p);
+	int i = 0; 
+	int j = 0;
+	while (i < slen && j < plen)
 	{
-		int k = i;
-		int j = 0;
-		for (j; j < len1; j++, k++)
+		if (s[i] == p[j])
 		{
-			if (b[k] != a[j])
-				break;
+			i++;
+			j++;
 		}
-		if (j == len1)
-			cout << "done " << i + 1 <<endl;
+		else
+		{
+			i = i - j + 1;
+			j = 0;
+		}
 	}
-
+	if (j == plen)
+		return i-j+1;
+	else
+		return -1;
 }
 
 int main()
 {
-	bf("abdcd", "abcdeabdcd");
+	int k = bf("ABCABCDE", "ABCD");
+	cout << k << endl;
 	getchar();
 	return 0;
 }
