@@ -134,10 +134,22 @@ BTNode<DataType> *BiTree<DataType>::Search(BTNode<DataType> *node, DataType val)
 		return NULL;
 	if (node->data == val)
 		return node;
-	else if (node->lchild != NULL)
-		return Search(node->lchild, val);
-	else if (node->rchild != NULL)
-		return Search(node->rchild, val);
+	BTNode<DataType> *pTemp =NULL;
+	if (node->lchild != NULL)
+	{
+		pTemp = Search(node->lchild, val);
+		if (pTemp)
+			return pTemp;
+	}
+	if (node->rchild != NULL)
+	{
+		pTemp = Search(node->rchild, val);
+		if (pTemp)
+			return pTemp;
+	}
+	else
+		
+		return pTemp;
 }
 
 int main()
